@@ -1,0 +1,33 @@
+{
+  "name": "mocs-docs-ocr",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "dist/server.js",
+  "repository": "https://github.com/Ricardo4466/mocs-docs-ocr.git",
+  "author": "Ricardo4466 <ricardolima26082003@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "ts-node --esm src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js"
+  },
+  "dependencies": {
+    "@langchain/core": "^0.3.76",
+    "@prisma/client": "^6.16.1",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "langchain": "^0.3.34",
+    "multer": "^2.0.2",
+    "openai": "^5.20.3",
+    "pg": "^8.16.3",
+    "tesseract.js": "^6.0.1"
+  },
+  "devDependencies": {
+    "@langchain/core": "^0.3.76",
+    "@types/express": "^5.0.3",
+    "@types/multer": "^2.0.0",
+    "@types/node": "^24.5.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  }
+}

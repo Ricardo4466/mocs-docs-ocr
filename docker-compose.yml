@@ -1,0 +1,36 @@
+services:
+  db:
+    image: postgres:15
+    container_name: mocs-db
+    environment:
+      POSTGRES_USER: mocsuser
+      POSTGRES_PASSWORD: mocspassword
+      POSTGRES_DB: mocsdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    restart: always
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    env_file:
+      - ./backend/.env
+    container_name: mocs-backend
+    command: sh -c "npx prisma migrate deploy && yarn dev"
+    volumes:
+      - ./backend:/app/backend
+      - /app/backend/node_modules
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgres://mocsuser:mocspassword@db:5432/mocsdb
+    depends_on:
+      - db
+    restart: always
+
+volumes:
+  postgres-data:
