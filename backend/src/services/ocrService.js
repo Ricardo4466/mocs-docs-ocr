@@ -1,6 +1,6 @@
 import Tesseract from "tesseract.js";
 
-export default async function extractText(filePath: string): Promise<string> {
+export default async function extractText(filePath) {
   const {
     data: { text },
   } = await Tesseract.recognize(filePath, "eng");

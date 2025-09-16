@@ -1,4 +1,3 @@
-import type { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 import extractText from "../services/ocrService.js";
 import path from "path";
@@ -6,7 +5,7 @@ import fs from "fs";
 
 const prisma = new PrismaClient();
 
-export async function uploadDocument(req: Request, res: Response) {
+export async function uploadDocument(req, res) {
   try {
     // Verifica se o arquivo foi enviado
     if (!req.file) {

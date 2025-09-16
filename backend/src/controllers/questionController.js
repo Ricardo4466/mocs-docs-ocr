@@ -1,10 +1,9 @@
-  import type { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 import answerQuestionRAG from "../services/ragService.js";
 
 const prisma = new PrismaClient();
 
-export async function askQuestion(req: Request, res: Response) {
+export async function askQuestion(req, res) {
   try {
     const { documentId, question } = req.body;
 
