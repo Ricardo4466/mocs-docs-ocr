@@ -5,10 +5,10 @@ WORKDIR /app
 # Copia apenas package.json e yarn.lock para aproveitar cache
 COPY package.json yarn.lock ./
 
-# Instala dependências (incluindo dev)
-RUN yarn install --frozen-lockfile --production=false
+# Instala dependências (incluindo dev, porque Prisma precisa delas em tempo de build)
+RUN yarn install --frozen-lockfile
 
-# Copia esquema Prisma e gera o client
+# Copia schema Prisma e gera client
 COPY prisma ./prisma
 RUN npx prisma generate
 
@@ -17,5 +17,6 @@ COPY . .
 
 EXPOSE 3000
 
-# Entrypoint para aplicar migrations e iniciar o servidor
-ENTRYPOINT ["sh", "-c", "npx prisma migrate deploy && yarn dev"]
+# Usa migrate deploy (produção) em vez de dev
+# "yarn dev" troca por "yarn start" se quiser rodar compilado (mais leve em prod)
+CMD npx prisma migrate deploy && yarn dev

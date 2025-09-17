@@ -48,6 +48,7 @@ class App extends Component {
     uploadedFiles.forEach(this.processUpload);
   }
 
+
   updateFile = (id: string, data: Partial<UploadedFile>) => {
     this.setState({ uploadedFiles: this.state.uploadedFiles.map(uploadedFile => {
       return id === uploadedFile.id ? { ...uploadedFile, ...data } : uploadedFile;
@@ -60,7 +61,7 @@ class App extends Component {
 
     data.append("file", uploadedFile.file, uploadedFile.name);
 
-    api.post('/uploads', data, {
+    api.post('api/documents/upload', data, {
       onUploadProgress: e => {
         const progress = e.total ? Math.round((e.loaded * 100) / e.total) : 0;
 
@@ -68,7 +69,24 @@ class App extends Component {
           progress
         });
       }
+    }).then(response => {
+      this.updateFile(uploadedFile.id, {
+        uploaded: true,
+        id: response.data.id,
+        url: response.data.url
+      });
+    }).catch(() => {
+      this.updateFile(uploadedFile.id, {
+        error: true
+      });
     });
+  }
+
+
+  handleDelete = (id: string | number) => {
+    api.delete(`api/documents/${id}`);
+
+    this.setState({ uploadedFiles: this.state.uploadedFiles.filter(file => file.id !== id) });
   }
 
   render() {
@@ -83,7 +101,7 @@ class App extends Component {
           
           <Upload onUpload={this.handleUpload} />
           { !!uploadedFiles.length &&(
-            <RenderFile files={uploadedFiles.map(f => ({
+            <RenderFile onDelete={this.handleDelete} files={uploadedFiles.map(f => ({
               id: f.id,
               name: f.name,
               size: f.file.size,

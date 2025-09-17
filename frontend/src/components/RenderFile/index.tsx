@@ -19,9 +19,10 @@ type File = {
 
 interface RenderFileProps {
     files: File[];
+    onDelete: (id: string | number) => void;
 }
 
-const RenderFile: React.FC<RenderFileProps> = ({ files }) => {
+const RenderFile: React.FC<RenderFileProps> = ({ files, onDelete }) => {
     return (
         <Container>
             {files.map((uploadedFile) => (
@@ -33,7 +34,7 @@ const RenderFile: React.FC<RenderFileProps> = ({ files }) => {
                             <span>
                                 {uploadedFile.readableSize}
                                 {uploadedFile.url && (
-                                    <button>Remover</button>
+                                    <button onClick={() => onDelete(uploadedFile.id)}>Remover</button>
                                 )}
                             </span>
                         </div>
