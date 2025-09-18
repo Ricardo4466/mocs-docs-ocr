@@ -28,8 +28,6 @@ Projeto de teste prático para Desenvolvedor Full Stack Pleno. O objetivo é con
 
 ## 🚀 Estrutura do Projeto
 
-## 🚀 Estrutura do Projeto
-
 - **mocs-docs-ocr/**
   - **backend/** – Servidor Node.js + Express
     - **prisma/** – Modelos e migrations do Prisma
@@ -39,8 +37,6 @@ Projeto de teste prático para Desenvolvedor Full Stack Pleno. O objetivo é con
     - **src/** – Código-fonte do frontend
   - **docker-compose.yml** – Configuração dos containers
   - **README.md** – Documentação do projeto
-
-
 
 ---
 
