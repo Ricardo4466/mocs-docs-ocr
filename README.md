@@ -27,15 +27,19 @@ Projeto de teste prático para Desenvolvedor Full Stack Pleno. O objetivo é con
 ---
 
 ## 🚀 Estrutura do Projeto
-mocs-docs-ocr/
-├─ backend/ # Servidor Node.js + Express
-│ ├─ prisma/ # Modelos e migrations do Prisma
-│ ├─ services/ # Lógica de OCR e integração com LLM (Groq)
-│ └─ routes/ # Rotas do backend
-├─ frontend/ # Aplicação React + Vite
-│ └─ src/
-├─ docker-compose.yml # Configuração dos containers
-└─ README.md
+
+## 🚀 Estrutura do Projeto
+
+- **mocs-docs-ocr/**
+  - **backend/** – Servidor Node.js + Express
+    - **prisma/** – Modelos e migrations do Prisma
+    - **services/** – Lógica de OCR e integração com LLM (Groq)
+    - **routes/** – Rotas do backend
+  - **frontend/** – Aplicação React + Vite
+    - **src/** – Código-fonte do frontend
+  - **docker-compose.yml** – Configuração dos containers
+  - **README.md** – Documentação do projeto
+
 
 
 ---
@@ -44,9 +48,15 @@ mocs-docs-ocr/
 
 ### 1. Configurar variáveis de ambiente
 
-No backend, crie um arquivo `.env.copy` com:
+No backend, renomear o arquivo `.env copy` para `.env`
+No frontend, renomear o arquivo `.env copy` para `.env`
 
+### 2. Iniciar containers com Docker
 
+`docker compose up build` 
+
+### 3. Iniciar todos os projetos
+`docker compose up`
 
 ## Verificar dados salvos no Banco 
 cd backend
