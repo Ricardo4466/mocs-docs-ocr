@@ -6,12 +6,11 @@ const api = axios.create({
 
 export default api
 
-// Add this declaration to fix the TypeScript error
+
 declare global {
   interface ImportMeta {
     readonly env: {
       readonly VITE_API_URL: string;
-      // add other env variables here if needed
       [key: string]: string | undefined;
     };
   }

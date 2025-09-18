@@ -12,10 +12,9 @@ export async function uploadDocument(req, res) {
 
     const filePath = path.resolve("uploads", req.file.filename);
 
-    // 🔎 OCR no arquivo
     const text = await extractText(filePath);
 
-    // 🔥 Salvar no banco
+
     const doc = await prisma.document.create({
       data: {
         file_name: req.file.originalname,
@@ -24,7 +23,6 @@ export async function uploadDocument(req, res) {
       },
     });
 
-    // URL pública para acessar a imagem
     const fileUrl = `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}`;
 
     return res.status(201).json({

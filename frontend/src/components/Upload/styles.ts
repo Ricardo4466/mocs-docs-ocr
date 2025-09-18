@@ -18,6 +18,7 @@ export const DropContainer = styled.div.attrs({ className: "dropzone" }) <DropCo
     border-radius: 4px;
     cursor: pointer;    
     transition: height 0.2s ease;
+    font-weight: bold;
 
     ${props => props.isDragActive && dragActive};
     ${props => props.isDragReject && dragReject};

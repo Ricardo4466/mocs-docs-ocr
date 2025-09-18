@@ -30,9 +30,12 @@ export const FileInfo = styled.div`
     }
 
     span {
+      display: flex;
       font-size: 12px;
       color: #999;
+      gap: 5px;
       margin-top: 5px;
+      align-items: center;
     }
 
     button {
