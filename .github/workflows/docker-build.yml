@@ -1,26 +1,40 @@
-name: Build and Push Docker Image
+name: Build and Push Docker Images
 
 on:
   push:
-    branches: ["main"]
+    branches:
+      - main  # ou a branch que você usa
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
+      # 1️⃣ Pegar o código do repositório
       - name: Checkout código
         uses: actions/checkout@v3
 
+      # 2️⃣ Login no Docker Hub
       - name: Login no Docker Hub
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build e Push da imagem
+      # 3️⃣ Build e Push do Backend
+      - name: Build e Push Backend
         uses: docker/build-push-action@v4
         with:
-          context: .
+          context: ./backend
+          file: ./backend/Dockerfile
           push: true
-          tags: seu-usuario/seu-projeto:latest
+          tags: ricardokeys/mocs-docs-backend:latest
+
+      # 4️⃣ Build e Push do Frontend
+      - name: Build e Push Frontend
+        uses: docker/build-push-action@v4
+        with:
+          context: ./frontend
+          file: ./frontend/Dockerfile
+          push: true
+          tags: ricardokeys/mocs-docs-frontend:latest
