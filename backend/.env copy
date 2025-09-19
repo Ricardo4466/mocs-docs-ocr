@@ -1,0 +1,4 @@
+PORT=3000
+DATABASE_URL="postgresql://user:password@postgres:5432/mocsdb?schema=public"
+OPENAI_API_KEY="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"
+GROQ_API_KEY="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"
